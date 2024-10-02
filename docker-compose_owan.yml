@@ -1,0 +1,22 @@
+services:
+  outline-base:
+    build:
+      dockerfile: Dockerfile.base
+      x-bake:
+        platforms:
+          - "linux/amd64"
+          - "linux/arm64"
+        tags:
+          - "owanio1992/outline:${OUTLINE_VERSION}-base"
+
+  outline:
+    build:
+      dockerfile: Dockerfile
+      args:
+        - OUTLINE_VERSION
+      x-bake:
+        platforms:
+          - "linux/amd64"
+          - "linux/arm64"
+        tags:
+          - "owanio1992/outline:${OUTLINE_VERSION}"
